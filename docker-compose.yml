@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  server:
+    build: .
+    command: npm run server
+    container_name: pokemon-server
+    image: node:17-alpine
+
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+
+  mariadb:
+    container_name: pokemon-database
+    image: mariadb:10.8
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+    
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb/data:/var/lib/mariadb
