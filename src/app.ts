@@ -1,8 +1,5 @@
 import express from 'express'
-import multer from 'multer'
 
-const csvToJson = require('convert-csv-to-json')
-const upload = multer({ dest: './public/uploads' })
 const app = express()
 
 const PORT = 3000
@@ -15,4 +12,4 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, function () {
   console.log(`Server is running on port ${PORT}`)
-});
+})
